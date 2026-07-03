@@ -4,9 +4,9 @@ const path = require('path');
 require('dotenv').config();
 
 const PORT = 3456;
-const GEMINI_KEY = (process.env.GEMINI_API_KEY || '').trim().replace(/['"]/g, '');
-const GEMINI_MODEL = 'gemini-1.5-flash';
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_KEY}`;
+const GROQ_KEY = (process.env.GROQ_API_KEY || '').trim().replace(/['"]/g, '');
+const GROQ_MODEL = 'llama3-70b-8192';
+const GROQ_URL = `https://api.groq.com/openai/v1/chat/completions`;
 
 const MIME = {
   '.html': 'text/html',
@@ -40,9 +40,12 @@ const server = http.createServer(async (req, res) => {
       try {
         const payload = JSON.parse(body);
 
-        const response = await fetch(GEMINI_URL, {
+        const response = await fetch(GROQ_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${GROQ_KEY}`
+          },
           body: JSON.stringify(payload),
         });
 
@@ -77,7 +80,7 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n  ✦ AstroChat server running at http://localhost:${PORT}\n`);
-  if (!GEMINI_KEY) {
-    console.log('  ⚠ Warning: GEMINI_API_KEY not found in .env file\n');
+  if (!GROQ_KEY) {
+    console.log('  ⚠ Warning: GROQ_API_KEY not found in .env file\n');
   }
 });

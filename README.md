@@ -1,12 +1,12 @@
-# 🚀 AstroChat — Gemini AI Chatbot
+# 🚀 AstroChat — Groq AI Chatbot
 
-A space-themed AI chatbot built with **Google Gemini API**. Features a stunning glassmorphism UI over a space background, real-time conversation with Gemini, and markdown-rendered responses.
+A space-themed AI chatbot built with **Groq API**. Features a stunning glassmorphism UI over a space background, real-time conversation with Groq (Llama 3), and markdown-rendered responses.
 
 ![AstroChat Preview](hero-bg.png)
 
 ## Features
 
-- **Google Gemini Integration** — Powered by Gemini 2.0 Flash for fast, intelligent responses
+- **Groq Integration** — Powered by Groq's Llama 3 70B for ultra-fast, intelligent responses
 - **Space Theme** — Beautiful rocket-launch background with translucent glassmorphism panels
 - **Markdown Support** — Code blocks, bold, italic, lists rendered beautifully in responses
 - **Conversation Memory** — Maintains context across the entire chat session
@@ -17,14 +17,14 @@ A space-themed AI chatbot built with **Google Gemini API**. Features a stunning 
 
 - **Frontend:** HTML, CSS, JavaScript (Vanilla)
 - **Backend:** Node.js (lightweight HTTP server)
-- **AI Model:** Google Gemini 2.0 Flash
+- **AI Model:** Groq (llama3-70b-8192)
 - **Fonts:** Space Grotesk + JetBrains Mono
 
 ## Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (v18 or higher)
-- A [Google Gemini API Key](https://aistudio.google.com/apikey)
+- A [Groq API Key](https://console.groq.com/keys)
 
 ### Installation
 
@@ -41,7 +41,7 @@ A space-themed AI chatbot built with **Google Gemini API**. Features a stunning 
 
 3. **Create a `.env` file** in the root directory
    ```
-   GEMINI_API_KEY=your_gemini_api_key_here
+   GROQ_API_KEY=gsk_your_groq_api_key_here
    ```
 
 4. **Start the server**

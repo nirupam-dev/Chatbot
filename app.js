@@ -8,7 +8,7 @@ const API_ENDPOINT = '/api/chat';
 
 const SYSTEM_PROMPT = [
   'You are Astro, a knowledgeable and approachable AI assistant.',
-  'You are built on top of Google Gemini.',
+  'You are built on top of Groq API.',
   'You can help with science, coding, math, writing, philosophy, and general curiosity.',
   'Keep answers clear, well-structured, and conversational.',
   'Use markdown: **bold** for emphasis, `code` for inline code, and fenced code blocks with language tags.',
@@ -128,17 +128,16 @@ function hideTyping() {
 
 // ── API call (goes through local server) ─────────────────────
 async function ask(text) {
-  history.push({ role: 'user', parts: [{ text }] });
+  history.push({ role: 'user', content: text });
 
   const payload = {
-    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-    contents: history,
-    generationConfig: {
-      temperature: 0.8,
-      topP: 0.95,
-      topK: 40,
-      maxOutputTokens: 2048,
-    },
+    model: 'llama3-70b-8192',
+    messages: [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...history
+    ],
+    temperature: 0.8,
+    max_tokens: 2048,
   };
 
   const res = await fetch(API_ENDPOINT, {
@@ -154,10 +153,10 @@ async function ask(text) {
     throw new Error(errMsg);
   }
 
-  const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!reply) throw new Error('Empty response from Gemini');
+  const reply = data?.choices?.[0]?.message?.content;
+  if (!reply) throw new Error('Empty response from Groq');
 
-  history.push({ role: 'model', parts: [{ text: reply }] });
+  history.push({ role: 'assistant', content: reply });
   return reply;
 }
 
@@ -206,7 +205,7 @@ btnNew.addEventListener('click', () => {
         <p class="landing-kicker">Hey there — I'm</p>
         <h2 class="landing-title">Astro<span class="accent-dot">.</span></h2>
         <p class="landing-desc">
-          Your personal AI copilot built on Google Gemini.<br>
+          Your personal AI copilot built on Groq API.<br>
           Ask me about space, code, science, or anything on your mind.
         </p>
       </div>
