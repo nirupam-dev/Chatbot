@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const PORT = 3456;
 const GROQ_KEY = (process.env.GROQ_API_KEY || '').trim().replace(/['"]/g, '');
-const GROQ_MODEL = 'llama3-70b-8192';
 const GROQ_URL = `https://api.groq.com/openai/v1/chat/completions`;
 
 const MIME = {
