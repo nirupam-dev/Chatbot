@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment variables (API keys)
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Design reference (not part of app)
+DESIGN.md
