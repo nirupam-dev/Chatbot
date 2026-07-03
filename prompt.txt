@@ -1,0 +1,1 @@
+Create a simple AI chatbot using the Google Gemini API. The chatbot should answer user queries naturally, like a friendly human assistant. Keep responses clear, conversational, and helpful. Use the Gemini API key securely from a .env file, handle errors gracefully, and write clean, well-structured, and production-ready code.
