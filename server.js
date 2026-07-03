@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const PORT = 3456;
 const GEMINI_KEY = (process.env.GEMINI_API_KEY || '').trim().replace(/['"]/g, '');
-const GEMINI_MODEL = 'gemini-2.0-flash';
+const GEMINI_MODEL = 'gemini-2.0-flash-lite';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_KEY}`;
 
 const MIME = {
